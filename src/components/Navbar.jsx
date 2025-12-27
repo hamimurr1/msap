@@ -4,6 +4,13 @@ import { useNavigate } from "react-router-dom";
 const Navbar = () => {
   const navigate = useNavigate();
 
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <header className="bg-[#41644A] shadow sticky top-0 z-50 w-full">
       <div className="h-14 px-6 flex justify-between items-center">
@@ -33,33 +40,21 @@ const Navbar = () => {
           </button>
 
           <button
-            onClick={() =>
-              document
-                .getElementById("services")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollTo("services")}
             className="px-3 py-1 rounded-md hover:bg-white/10 hover:text-[#EBE1D1] transition"
           >
             Services
           </button>
 
           <button
-            onClick={() =>
-              document
-                .getElementById("about")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollTo("about")}
             className="px-3 py-1 rounded-md hover:bg-white/10 hover:text-[#EBE1D1] transition"
           >
             About
           </button>
 
           <button
-            onClick={() =>
-              document
-                .getElementById("contact")
-                ?.scrollIntoView({ behavior: "smooth" })
-            }
+            onClick={() => scrollTo("contact")}
             className="px-3 py-1 rounded-md hover:bg-white/10 hover:text-[#EBE1D1] transition"
           >
             Contact

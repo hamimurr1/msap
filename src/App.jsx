@@ -9,15 +9,18 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import Login from "./components/Login";
 
+import UserDashboard from "./pages/UserDashboard";
+import ProviderDashboard from "./pages/ProviderDashboard";
+import ManagerDashboard from "./pages/ManagerDashboard";
+
 function App() {
   return (
     <BrowserRouter>
-      {/* COMMON NAVBAR */}
+      {/* ALWAYS SHOW NAVBAR */}
       <Navbar />
 
-      {/* ROUTES */}
       <Routes>
-        {/* HOME PAGE */}
+        {/* HOME */}
         <Route
           path="/"
           element={
@@ -30,10 +33,15 @@ function App() {
           }
         />
 
-        {/* LOGIN (USER / PROVIDER / MANAGER) */}
+        {/* LOGIN */}
         <Route path="/login/:role" element={<Login />} />
 
-        {/* FUTURE: CATEGORY SERVICES */}
+        {/* DASHBOARDS */}
+        <Route path="/user/dashboard" element={<UserDashboard />} />
+        <Route path="/provider/dashboard" element={<ProviderDashboard />} />
+        <Route path="/manager/dashboard" element={<ManagerDashboard />} />
+
+        {/* SERVICES */}
         <Route
           path="/services/category/:id"
           element={
@@ -43,7 +51,6 @@ function App() {
           }
         />
 
-        {/* FUTURE: SERVICE DETAILS */}
         <Route
           path="/services/details/:id"
           element={
@@ -54,7 +61,7 @@ function App() {
         />
       </Routes>
 
-      {/* COMMON FOOTER */}
+      {/* ALWAYS SHOW FOOTER */}
       <Footer />
     </BrowserRouter>
   );

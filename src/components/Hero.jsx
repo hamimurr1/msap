@@ -14,13 +14,25 @@ const Hero = () => {
       Emergency, medical, police, and daily assistance all in one platform.
     </p>
     <div className="mt-6 flex justify-center gap-4">
-  <button className="btn bg-[#41644A] text-white hover:bg-[#35533D] border-none">
-    Get Started
-  </button>
+  <button
+          onClick={() =>
+            document.getElementById("services")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+          className="px-5 py-2 bg-[#41644A] text-white rounded-lg"
+        >
+          Get Started
+        </button>
 
-  <button className="btn btn-outline border-[#41644A] text-[#41644A] hover:bg-[#41644A] hover:text-white">
-    Learn More
-  </button>
+    <button
+          onClick={() =>
+            document.getElementById("about")
+              ?.scrollIntoView({ behavior: "smooth" })
+          }
+          className="px-5 py-2 border border-[#41644A] text-[#41644A] rounded-lg"
+        >
+          Learn More
+        </button>
 </div>
 
   </div>

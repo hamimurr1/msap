@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 
 const Services = () => {
   const navigate = useNavigate();
+  const [showAll, setShowAll] = useState(false);
 
   const categories = [
     { id: 1, name: "Hospital", icon: "🏥" },
@@ -32,12 +33,9 @@ const Services = () => {
     },
   ];
 
-  const [showAll, setShowAll] = useState(false);
-
   return (
     <main id="services">
-
-      {/* ===== CATEGORY SECTION ===== */}
+      {/* CATEGORY SECTION */}
       <section className="py-16 bg-gray-100">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-3xl font-bold text-center mb-10">
@@ -51,22 +49,23 @@ const Services = () => {
                 <div
                   key={cat.id}
                   onClick={() => navigate(`/services/category/${cat.id}`)}
-                  className="bg-white p-6 rounded-2xl shadow hover:shadow-lg cursor-pointer"
+                  className="bg-white p-6 rounded-2xl shadow hover:shadow-lg cursor-pointer flex flex-col justify-between"
                 >
-                  <div className="text-3xl mb-4 text-center">
-                    {cat.icon}
+                  <div>
+                    <div className="text-3xl mb-4 text-center">
+                      {cat.icon}
+                    </div>
+                    <h3 className="text-center font-semibold mb-4">
+                      {cat.name}
+                    </h3>
                   </div>
-
-                  <h3 className="text-center font-semibold mb-3">
-                    {cat.name}
-                  </h3>
 
                   <button
                     onClick={(e) => {
                       e.stopPropagation();
                       navigate(`/services/category/${cat.id}`);
                     }}
-                    className="block mx-auto px-4 py-2 bg-[#41644A] text-white rounded-lg"
+                    className="mt-auto px-4 py-1 bg-[#41644A] text-white rounded-lg hover:bg-[#35523d]"
                   >
                     Request Service
                   </button>
@@ -77,17 +76,17 @@ const Services = () => {
           {categories.length > 8 && (
             <div className="text-center mt-8">
               <button
-                onClick={() => setShowAll(!showAll)}
+                onClick={() => setShowAll((prev) => !prev)}
                 className="px-4 py-2 bg-indigo-600 text-white rounded-md"
               >
-                {showAll ? "See less" : "See more"}
+                {showAll ? "See Less" : "See More"}
               </button>
             </div>
           )}
         </div>
       </section>
 
-      {/* ===== RECENT SERVICES ===== */}
+      {/* RECENT SERVICES */}
       <section className="py-12 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-2xl font-bold text-center mb-8">
@@ -96,12 +95,15 @@ const Services = () => {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {recentServices.map((s) => (
-              <div key={s.id} className="bg-gray-50 p-4 rounded shadow">
+              <div
+                key={s.id}
+                className="bg-gray-50 p-5 rounded-lg shadow hover:shadow-md"
+              >
                 <h3 className="font-semibold mb-2">
                   {s.service_name}
                 </h3>
 
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-gray-600 mb-4">
                   {s.category} • {s.provider}
                 </p>
 
@@ -109,17 +111,17 @@ const Services = () => {
                   onClick={() =>
                     navigate(`/services/details/${s.id}`)
                   }
-                  className="px-3 py-1 bg-blue-600 text-white rounded text-sm"
+                  className="px-4 py-1.5 bg-blue-600 text-white rounded text-sm hover:bg-blue-700"
                 >
-                  View
+                  View Details
                 </button>
               </div>
             ))}
           </div>
 
-          <div className="text-center mt-6">
+          <div className="text-center mt-8">
             <button
-              onClick={() => navigate("/services")}
+              onClick={() => navigate("/services/all")}
               className="px-4 py-2 bg-indigo-600 text-white rounded-md"
             >
               View All Services
